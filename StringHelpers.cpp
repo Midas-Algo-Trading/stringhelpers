@@ -1,14 +1,15 @@
 #include <sstream>
 #include "StringHelpers.h"
 #include <iostream>
+#include <utility>
 
-std::string strh::capitalize(std::string &string)
+std::string strh::capitalize(std::string string)
 {
     string[0] = static_cast<char>(toupper(string[0]));
     return string;
 }
 
-std::string strh::align(std::string &string, Alignment alignment, int target_len, char fill)
+std::string strh::align(std::string& string, Alignment alignment, int target_len, char fill)
 {
     return align(string, alignment, target_len, std::string(1, fill));
 }
@@ -31,31 +32,31 @@ std::string strh::align(std::string &string, Alignment alignment, int target_len
     }
 }
 
-std::string strh::priv_helpers::align_left(std::string &string, int target_len, std::string fill)
+std::string strh::priv_helpers::align_left(std::string string, int target_len, std::string fill)
 {
     size_t fill_amount = target_len - string.length();
-    strh::multiply(fill, fill_amount / fill.size());
+    fill = strh::multiply(fill, fill_amount / fill.size());
     string = fill + string;
     return string;
 }
 
-std::string strh::priv_helpers::align_center(std::string &string, int target_len, std::string fill)
+std::string strh::priv_helpers::align_center(std::string string, int target_len, std::string fill)
 {
     size_t fill_amount = target_len - string.length();
-    strh::multiply(fill, (fill_amount / fill.size()) / 2);
+    fill = strh::multiply(fill, (fill_amount / fill.size()) / 2);
     string = fill + string + fill;
     return string;
 }
 
-std::string strh::priv_helpers::align_right(std::string &string, int target_len, std::string fill)
+std::string strh::priv_helpers::align_right(std::string string, int target_len, std::string fill)
 {
     size_t fill_amount = target_len - string.length();
-    strh::multiply(fill, fill_amount / fill.size());
+    fill = strh::multiply(fill, fill_amount / fill.size());
     string = string + fill;
     return string;
 }
 
-std::string strh::multiply(std::string &string, size_t amount)
+std::string strh::multiply(std::string string, size_t amount)
 {
     std::string multiplied_string;
     while (amount > 0)
@@ -257,7 +258,7 @@ std::vector<std::string> strh::split(std::string_view string, std::string_view d
     return ret;
 }
 
-std::string strh::strip(std::string &string)
+std::string strh::strip(std::string string)
 {
     size_t front_whitespaces_end_idx = string.find_first_not_of(" \t\n");
     if (front_whitespaces_end_idx == std::string::npos)
@@ -270,7 +271,7 @@ std::string strh::strip(std::string &string)
     return string;
 }
 
-std::string strh::swap_cases(std::string &string)
+std::string strh::swap_cases(std::string string)
 {
     for (char &ch: string)
     {
@@ -330,12 +331,12 @@ std::vector<size_t> strh::find(std::string_view string, std::string_view key)
     return ret;
 }
 
-std::string strh::replace(std::string &string, std::string_view from, std::string_view to)
+std::string strh::replace(std::string string, std::string_view from, std::string_view to)
 {
     if (from.empty())
     {
         std::string new_string = std::string(to);
-        strh::multiply(new_string, string.length());
+        new_string = strh::multiply(new_string, string.length());
         string = new_string;
         return string;
     }
@@ -349,22 +350,22 @@ std::string strh::replace(std::string &string, std::string_view from, std::strin
     return string;
 }
 
-std::string strh::replace(std::string &string, std::string_view from, char to)
+std::string strh::replace(std::string string, std::string_view from, char to)
 {
-    return strh::replace(string, from, std::string(1, to));
+    return strh::replace(std::move(string), from, std::string(1, to));
 }
 
-std::string strh::replace(std::string &string, char from, std::string_view to)
+std::string strh::replace(std::string string, char from, std::string_view to)
 {
-    return strh::replace(string, std::string(1, from), to);
+    return strh::replace(std::move(string), std::string(1, from), to);
 }
 
-std::string strh::replace(std::string &string, char from, char to)
+std::string strh::replace(std::string string, char from, char to)
 {
-    return strh::replace(string, std::string(1, from), std::string(1, to));
+    return strh::replace(std::move(string), std::string(1, from), std::string(1, to));
 }
 
-std::string strh::remove_nums(std::string &string)
+std::string strh::remove_nums(std::string string)
 {
     std::string new_string;
     for (char ch: string)
@@ -376,7 +377,7 @@ std::string strh::remove_nums(std::string &string)
     return string;
 }
 
-std::string strh::remove_alphabetical(std::string &string)
+std::string strh::remove_alphabetical(std::string string)
 {
     std::string new_string;
     for (char ch: string)

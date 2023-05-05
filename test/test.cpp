@@ -4,65 +4,65 @@
 TEST(capitalize, basic)
 {
     std::string string = "test";
-    strh::capitalize(string);
+    string = strh::capitalize(string);
     ASSERT_EQ(string, "Test");
 }
 
 TEST(capitalize, empty_string)
 {
     std::string string;
-    strh::capitalize(string);
+    string = strh::capitalize(string);
     ASSERT_EQ(string, "");
 }
 
 TEST(align, target_len)
 {
     std::string string = "test";
-    strh::align(string, strh::Alignment::LEFT, 7, '*');
+    string = strh::align(string, strh::Alignment::LEFT, 7, '*');
     ASSERT_EQ(string, "***test");
-    strh::align(string, strh::Alignment::LEFT, 8, '*');
+    string = strh::align(string, strh::Alignment::LEFT, 8, '*');
     ASSERT_EQ(string, "****test");
 }
 
 TEST(align, fill)
 {
     std::string string = "test";
-    strh::align(string, strh::Alignment::LEFT, 7, '*');
+    string = strh::align(string, strh::Alignment::LEFT, 7, '*');
     ASSERT_EQ(string[0], '*');
 }
 
 TEST(align, align_left)
 {
     std::string string = "test";
-    strh::align(string, strh::Alignment::LEFT, 7, '*');
+    string = strh::align(string, strh::Alignment::LEFT, 7, '*');
     ASSERT_EQ(string, "***test");
 }
 
 TEST(align, align_right)
 {
     std::string string = "test";
-    strh::align(string, strh::Alignment::RIGHT, 7, '*');
+    string = strh::align(string, strh::Alignment::RIGHT, 7, '*');
     ASSERT_EQ(string, "test***");
 }
 
 TEST(align, align_center_even)
 {
     std::string string = "test";
-    strh::align(string, strh::Alignment::CENTER, 8, '*');
+    string = strh::align(string, strh::Alignment::CENTER, 8, '*');
     ASSERT_EQ(string, "**test**");
 }
 
 TEST(align, align_center_odd)
 {
     std::string string = "test";
-    strh::align(string, strh::Alignment::CENTER, 9, '*');
+    string = strh::align(string, strh::Alignment::CENTER, 9, '*');
     ASSERT_EQ(string, "**test**");
 }
 
 TEST(align, empty_string)
 {
     std::string string;
-    strh::align(string, strh::Alignment::CENTER, 5, '*');
+    string = strh::align(string, strh::Alignment::CENTER, 5, '*');
     ASSERT_EQ(string, "****");
 }
 
@@ -75,21 +75,21 @@ TEST(align, empty_fill_throws_invalid_argument)
 TEST(multiply, basic)
 {
     std::string string = "test ";
-    strh::multiply(string, 3);
+    string = strh::multiply(string, 3);
     ASSERT_EQ(string, "test test test ");
 }
 
 TEST(multiply, zero)
 {
     std::string string = "test";
-    strh::multiply(string, 0);
+    string = strh::multiply(string, 0);
     ASSERT_EQ(string, "");
 }
 
 TEST(multiply, empty_string)
 {
     std::string string;
-    strh::multiply(string, 3);
+    string = strh::multiply(string, 3);
     ASSERT_EQ(string, "");
 }
 
@@ -491,98 +491,98 @@ TEST(split_lines, empty_string)
 TEST(strip, nothing_to_strip)
 {
     std::string string = "test";
-    strh::strip(string);
+    string = strh::strip(string);
     ASSERT_EQ(string, "test");
 }
 
 TEST(strip, something_to_strip)
 {
     std::string string = " \ntest\n ";
-    strh::strip(string);
+    string = strh::strip(string);
     ASSERT_EQ(string, "test");
 }
 
 TEST(strip, all_to_strip)
 {
     std::string string = "\n";
-    strh::strip(string);
+    string = strh::strip(string);
     ASSERT_EQ(string, "");
 }
 
 TEST(strip, left)
 {
     std::string string = " \ntest";
-    strh::strip(string);
+    string = strh::strip(string);
     ASSERT_EQ(string, "test");
 }
 
 TEST(strip, right)
 {
     std::string string = "test\n ";
-    strh::strip(string);
+    string = strh::strip(string);
     ASSERT_EQ(string, "test");
 }
 
 TEST(strip, space)
 {
     std::string string = " test";
-    strh::strip(string);
+    string = strh::strip(string);
     ASSERT_EQ(string, "test");
 }
 
 TEST(strip, new_line)
 {
     std::string string = "\ntest";
-    strh::strip(string);
+    string = strh::strip(string);
     ASSERT_EQ(string, "test");
 }
 
 TEST(strip, tab)
 {
     std::string string = "\ttest";
-    strh::strip(string);
+    string = strh::strip(string);
     ASSERT_EQ(string, "test");
 }
 
 TEST(strip, empty_string)
 {
     std::string string;
-    strh::strip(string);
+    string = strh::strip(string);
     ASSERT_EQ(string, "");
 }
 
 TEST(swap_cases, all_lowercase)
 {
     std::string string = "test";
-    strh::swap_cases(string);
+    string = strh::swap_cases(string);
     ASSERT_EQ(string, "TEST");
 }
 
 TEST(swap_cases, mix_case)
 {
     std::string string = "TeSt";
-    strh::swap_cases(string);
+    string = strh::swap_cases(string);
     ASSERT_EQ(string, "tEsT");
 }
 
 TEST(swap_cases, all_uppercase)
 {
     std::string string = "TEST";
-    strh::swap_cases(string);
+    string = strh::swap_cases(string);
     ASSERT_EQ(string, "test");
 }
 
 TEST(swap_cases, no_cases)
 {
     std::string string = "123";
-    strh::swap_cases(string);
+    string = strh::swap_cases(string);
     ASSERT_EQ(string, "123");
 }
 
 TEST(swap_cases, empty_string)
 {
     std::string string;
-    strh::swap_cases(string);
+    string = strh::swap_cases(string);
     ASSERT_EQ(string, "");
 }
 
@@ -740,70 +740,70 @@ TEST(find, empty_key_throw_invalid_argument)
 TEST(replace, character_character)
 {
     std::string string = "test";
-    strh::replace(string, 't', 'x');
+    string = strh::replace(string, 't', 'x');
     ASSERT_EQ(string, "xesx");
 }
 
 TEST(replace, string_string)
 {
     std::string string = "test";
-    strh::replace(string, "es", "se");
+    string = strh::replace(string, "es", "se");
     ASSERT_EQ(string, "tset");
 }
 
 TEST(replace, character_string)
 {
     std::string string = "test";
-    strh::replace(string, 't', "xx");
+    string = strh::replace(string, 't', "xx");
     ASSERT_EQ(string, "xxesxx");
 }
 
 TEST(replace, string_character)
 {
     std::string string = "test";
-    strh::replace(string, "es", 'x');
+    string = strh::replace(string, "es", 'x');
     ASSERT_EQ(string, "txt");
 }
 
 TEST(replace, not_in)
 {
     std::string string = "test";
-    strh::replace(string, 'x', 'y');
+    string = strh::replace(string, 'x', 'y');
     ASSERT_EQ(string, "test");
 }
 
 TEST(replace, in)
 {
     std::string string = "test";
-    strh::replace(string, 't', 'x');
+    string = strh::replace(string, 't', 'x');
     ASSERT_EQ(string, "xesx");
 }
 
 TEST(replace, all)
 {
     std::string string = "www";
-    strh::replace(string, 'w', 'y');
+    string = strh::replace(string, 'w', 'y');
     ASSERT_EQ(string, "yyy");
 }
 
 TEST(replace, empty_string)
 {
     std::string string;
-    strh::replace(string, 'x', 'y');
+    string = strh::replace(string, 'x', 'y');
     ASSERT_EQ(string, "");
 }
 
 TEST(replace, empty_from)
 {
     std::string string = "test";
-    strh::replace(string, "", 'x');
+    string = strh::replace(string, "", 'x');
     ASSERT_EQ(string, "xxxx");
 }
 
 TEST(replace, empty_to)
 {
     std::string string = "test";
-    strh::replace(string, 't', "");
+    string = strh::replace(string, 't', "");
     ASSERT_EQ(string, "es");
 }
 
@@ -811,56 +811,56 @@ TEST(replace, empty_to)
 TEST(remove_nums, not_in)
 {
     std::string string = "test";
-    strh::remove_nums(string);
+    string = strh::remove_nums(string);
     ASSERT_EQ(string, "test");
 }
 
 TEST(remove_nums, in)
 {
     std::string string = "123test123";
-    strh::remove_nums(string);
+    string = strh::remove_nums(string);
     ASSERT_EQ(string, "test");
 }
 
 TEST(remove_nums, all)
 {
     std::string string = "123";
-    strh::remove_nums(string);
+    string = strh::remove_nums(string);
     ASSERT_EQ(string, "");
 }
 
 TEST(remove_nums, empty_string)
 {
     std::string string;
-    strh::remove_nums(string);
+    string = strh::remove_nums(string);
     ASSERT_EQ(string, "");
 }
 
 TEST(remove_alphabetical, not_in)
 {
     std::string string = "123";
-    strh::remove_alphabetical(string);
+    string = strh::remove_alphabetical(string);
     ASSERT_EQ(string, "123");
 }
 
 TEST(remove_alphabetical, in)
 {
     std::string string = "123test";
-    strh::remove_alphabetical(string);
+    string = strh::remove_alphabetical(string);
     ASSERT_EQ(string, "123");
 }
 
 TEST(remove_alphabetical, all)
 {
     std::string string = "test";
-    strh::remove_alphabetical(string);
+    string = strh::remove_alphabetical(string);
     ASSERT_EQ(string, "");
 }
 
 TEST(remove_alphabetical, empty_string)
 {
     std::string string;
-    strh::remove_alphabetical(string);
+    string = strh::remove_alphabetical(string);
     ASSERT_EQ(string, "");
 }
 

@@ -27,7 +27,7 @@ enum Alignment { LEFT, CENTER, RIGHT };
  *
  * @return capitalized 'string'.
  */
-std::string capitalize(std::string &string);
+std::string capitalize(std::string string);
 
 /**
  * Adds characters to 'string' to align 'string' to a target length.
@@ -64,7 +64,7 @@ std::string align(std::string &string, Alignment alignment, int target_len,
  *
  * @return multiplied 'string'
  */
-std::string multiply(std::string &string, size_t amount);
+std::string multiply(std::string string, size_t amount);
 
 /**
  * Counts the number of times 'key' is in 'string'
@@ -252,7 +252,7 @@ std::vector<std::string> split_lines(std::string_view string);
  * @note whitespaces will be removed at the beginning and end until a non-whitespace character is
  * met.
  */
-std::string strip(std::string &string);
+std::string strip(std::string string);
 
 /**
  * Swaps the cases of each of character in 'string'
@@ -264,7 +264,7 @@ std::string strip(std::string &string);
  *
  * @return 'string' with swapped characters.
  */
-std::string swap_cases(std::string &string);
+std::string swap_cases(std::string string);
 
 /**
  * Finds the index of the first occurrence of 'key' in 'string'.
@@ -347,7 +347,7 @@ std::vector<size_t> find(std::string_view string, std::string_view key);
  *
  * @return 'string' with all occurrences of 'from' replaced with 'to'.
  */
-std::string replace(std::string &string, std::string_view from, std::string_view to);
+std::string replace(std::string string, std::string_view from, std::string_view to);
 
 /**
  * Replaces all occurrences of 'from' to 'to' in 'string'.
@@ -358,7 +358,7 @@ std::string replace(std::string &string, std::string_view from, std::string_view
  *
  * @return 'string' with all occurrences of 'from' replaced with 'to'.
  */
-std::string replace(std::string &string, char from, std::string_view to);
+std::string replace(std::string string, char from, std::string_view to);
 
 /**
  * Replaces all occurrences of 'from' to 'to' in 'string'.
@@ -369,7 +369,7 @@ std::string replace(std::string &string, char from, std::string_view to);
  *
  * @return 'string' with all occurrences of 'from' replaced with 'to'.
  */
-std::string replace(std::string &string, std::string_view from, char to);
+std::string replace(std::string string, std::string_view from, char to);
 
 /**
  * Replaces all occurrences of 'from' to 'to' in 'string'.
@@ -380,7 +380,7 @@ std::string replace(std::string &string, std::string_view from, char to);
  *
  * @return 'string' with all occurrences of 'from' replaced with 'to'.
  */
-std::string replace(std::string &string, char from, char to);
+std::string replace(std::string string, char from, char to);
 
 /**
  * Removes all numbers in 'string'.
@@ -389,7 +389,7 @@ std::string replace(std::string &string, char from, char to);
  *
  * @return 'string' with all numbers removed.
  */
-std::string remove_nums(std::string &string);
+std::string remove_nums(std::string string);
 
 /**
  * Removes all alphabetical (letters) in 'string'.
@@ -398,7 +398,7 @@ std::string remove_nums(std::string &string);
  *
  * @return 'string' with all alphabetical (letters) removed.
  */
-std::string remove_alphabetical(std::string &string);
+std::string remove_alphabetical(std::string string);
 
 /**
  * Helper functions for the String Helper functions.
@@ -417,7 +417,7 @@ namespace priv_helpers
  *
  * @return 'string' aligned to the left.
  */
-std::string align_left(std::string &string, int target_len, std::string fill);
+std::string align_left(std::string string, int target_len, std::string fill);
 
 /**
  * Adds characters to the right of 'string' to align 'string' to a target length.
@@ -428,7 +428,7 @@ std::string align_left(std::string &string, int target_len, std::string fill);
  *
  * @return 'string' aligned to the right.
  */
-std::string align_center(std::string &string, int target_len, std::string fill);
+std::string align_center(std::string string, int target_len, std::string fill);
 
 /**
  * Adds characters to the left and right of 'string' to align 'string' to a target length.
@@ -439,7 +439,7 @@ std::string align_center(std::string &string, int target_len, std::string fill);
  *
  * @return 'string' aligned to the center.
  */
-std::string align_right(std::string &string, int target_len, std::string fill);
+std::string align_right(std::string string, int target_len, std::string fill);
 }
 }
 
