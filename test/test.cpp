@@ -218,47 +218,6 @@ TEST(is_in, empty_key_throws_invalid_argument)
     ASSERT_THROW(strh::is_in(string, ""), std::invalid_argument);
 }
 
-TEST(index, character)
-{
-    std::string string = "test";
-    int t_index = strh::index(string, 'e');
-    ASSERT_EQ(t_index, 1);
-}
-
-TEST(index, string)
-{
-    std::string string = "test";
-    int st_index = strh::index(string, "es");
-    ASSERT_EQ(st_index, 1);
-}
-
-TEST(index, first_char)
-{
-    std::string string = "test";
-    int t_index = strh::index(string, 't');
-    ASSERT_EQ(t_index, 0);
-}
-
-TEST(index, last_char)
-{
-    std::string string = "testing";
-    int g_index = strh::index(string, 'g');
-    ASSERT_EQ(g_index, 6);
-}
-
-TEST(index, empty_string)
-{
-    std::string string;
-    int x_index = strh::index(string, 'x');
-    ASSERT_EQ(x_index, -1);
-}
-
-TEST(index, empty_key_throws_invalid_argument)
-{
-    std::string string = "test";
-    ASSERT_THROW(strh::index(string, ""), std::invalid_argument);
-}
-
 TEST(all_nums, no_nums)
 {
     std::string string = "test";

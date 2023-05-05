@@ -41,7 +41,7 @@ std::string capitalize(std::string string);
  *
  * @throws std::invalid_argument Thrown if 'fill' is empty.
  */
-std::string align(std::string &string, Alignment alignment, int target_len, char fill);
+std::string align(std::string &string, Alignment alignment, size_t target_len, char fill);
 
 /**
  * Adds characters to 'string' to align 'string' to a target length.
@@ -53,7 +53,7 @@ std::string align(std::string &string, Alignment alignment, int target_len, char
  *
  * @return aligned 'string'.
  */
-std::string align(std::string &string, Alignment alignment, int target_len,
+std::string align(std::string &string, Alignment alignment, size_t target_len,
                   const std::string &fill);
 
 /**
@@ -74,7 +74,7 @@ std::string multiply(std::string string, size_t amount);
  *
  * @return the number of times 'key' is in 'string'.
  */
-int count(std::string_view string, char key);
+size_t count(std::string_view string, char key);
 
 /**
  * Counts the number of times 'key' is in 'string'
@@ -86,7 +86,7 @@ int count(std::string_view string, char key);
  *
  * @throws std::invalid_argument Thrown if 'key' is empty.
  */
-int count(std::string_view string, std::string_view key);
+size_t count(std::string_view string, std::string_view key);
 
 /**
  * Checks if 'string' ends with 'key'.
@@ -129,28 +129,6 @@ bool is_in(std::string_view string, char key);
  * @return 'true' if 'key' is in 'string', 'false' otherwise.
  */
 bool is_in(std::string_view string, std::string_view key);
-
-/**
- * Gets the first index 'key' occurs in 'string'
- *
- * @param string the string to search.
- * @param key the character to search for in 'string'.
- *
- * @return 'true' if 'key' occurs in 'string', 'false' otherwise.
- */
-int index(std::string_view string, char key);
-
-/**
- * Gets the first index 'key' occurs in 'string'
- *
- * @param string the string to search.
- * @param key the string to search for in 'string'.
- *
- * @return 'true' if 'key' occurs in 'string', 'false' otherwise.
- *
- * @throw std::invalid_argument Thrown if 'key' is empty.
- */
-int index(std::string_view string, std::string_view key);
 
 /**
  * Checks if all characters in 'string' are numbers.
@@ -417,7 +395,7 @@ namespace priv_helpers
  *
  * @return 'string' aligned to the left.
  */
-std::string align_left(std::string string, int target_len, std::string fill);
+std::string align_left(std::string string, size_t target_len, std::string fill);
 
 /**
  * Adds characters to the right of 'string' to align 'string' to a target length.
@@ -428,7 +406,7 @@ std::string align_left(std::string string, int target_len, std::string fill);
  *
  * @return 'string' aligned to the right.
  */
-std::string align_center(std::string string, int target_len, std::string fill);
+std::string align_center(std::string string, size_t target_len, std::string fill);
 
 /**
  * Adds characters to the left and right of 'string' to align 'string' to a target length.
@@ -439,7 +417,7 @@ std::string align_center(std::string string, int target_len, std::string fill);
  *
  * @return 'string' aligned to the center.
  */
-std::string align_right(std::string string, int target_len, std::string fill);
+std::string align_right(std::string string, size_t target_len, std::string fill);
 }
 }
 

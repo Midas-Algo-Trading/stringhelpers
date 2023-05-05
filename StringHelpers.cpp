@@ -9,12 +9,12 @@ std::string strh::capitalize(std::string string)
     return string;
 }
 
-std::string strh::align(std::string& string, Alignment alignment, int target_len, char fill)
+std::string strh::align(std::string& string, Alignment alignment, size_t target_len, char fill)
 {
     return align(string, alignment, target_len, std::string(1, fill));
 }
 
-std::string strh::align(std::string &string, Alignment alignment, int target_len, const
+std::string strh::align(std::string &string, Alignment alignment, size_t target_len, const
                         std::string &fill)
 {
     if (fill.empty())
@@ -32,7 +32,7 @@ std::string strh::align(std::string &string, Alignment alignment, int target_len
     }
 }
 
-std::string strh::priv_helpers::align_left(std::string string, int target_len, std::string fill)
+std::string strh::priv_helpers::align_left(std::string string, size_t target_len, std::string fill)
 {
     size_t fill_amount = target_len - string.length();
     fill = strh::multiply(fill, fill_amount / fill.size());
@@ -40,7 +40,7 @@ std::string strh::priv_helpers::align_left(std::string string, int target_len, s
     return string;
 }
 
-std::string strh::priv_helpers::align_center(std::string string, int target_len, std::string fill)
+std::string strh::priv_helpers::align_center(std::string string, size_t target_len, std::string fill)
 {
     size_t fill_amount = target_len - string.length();
     fill = strh::multiply(fill, (fill_amount / fill.size()) / 2);
@@ -48,7 +48,7 @@ std::string strh::priv_helpers::align_center(std::string string, int target_len,
     return string;
 }
 
-std::string strh::priv_helpers::align_right(std::string string, int target_len, std::string fill)
+std::string strh::priv_helpers::align_right(std::string string, size_t target_len, std::string fill)
 {
     size_t fill_amount = target_len - string.length();
     fill = strh::multiply(fill, fill_amount / fill.size());
@@ -68,7 +68,7 @@ std::string strh::multiply(std::string string, size_t amount)
     return string;
 }
 
-int strh::count(std::string_view string, char key)
+size_t strh::count(std::string_view string, char key)
 {
     int ret = 0;
     for (char ch: string)
@@ -79,7 +79,7 @@ int strh::count(std::string_view string, char key)
     return ret;
 }
 
-int strh::count(std::string_view string, std::string_view key)
+size_t strh::count(std::string_view string, std::string_view key)
 {
     if (key.empty())
         throw std::invalid_argument("key cannot be empty");
@@ -116,20 +116,6 @@ bool strh::is_in(std::string_view string, char key)
 bool strh::is_in(std::string_view string, std::string_view key)
 {
     return count(string, key) != 0;
-}
-
-int strh::index(std::string_view string, char key)
-{
-    return strh::index(string, std::string(1, key));
-}
-
-int strh::index(std::string_view string, std::string_view key)
-{
-    if (key.empty())
-        throw std::invalid_argument("key cannot be empty");
-
-    size_t found_idx = string.find(key);
-    return found_idx != std::string::npos ? static_cast<int>(found_idx) : -1;
 }
 
 bool strh::all_nums(std::string_view string)
