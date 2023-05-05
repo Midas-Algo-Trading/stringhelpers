@@ -9,12 +9,12 @@ std::string strh::capitalize(std::string string)
     return string;
 }
 
-std::string strh::align(std::string& string, Alignment alignment, size_t target_len, char fill)
+std::string strh::align(std::string string, Alignment alignment, size_t target_len, char fill)
 {
-    return align(string, alignment, target_len, std::string(1, fill));
+    return align(std::move(string), alignment, target_len, std::string(1, fill));
 }
 
-std::string strh::align(std::string &string, Alignment alignment, size_t target_len, const
+std::string strh::align(std::string string, Alignment alignment, size_t target_len, const
                         std::string &fill)
 {
     if (fill.empty())
