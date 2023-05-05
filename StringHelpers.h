@@ -41,7 +41,7 @@ std::string capitalize(std::string string);
  *
  * @throws std::invalid_argument Thrown if 'fill' is empty.
  */
-std::string align(std::string &string, Alignment alignment, size_t target_len, char fill);
+std::string align(std::string string, Alignment alignment, size_t target_len, char fill);
 
 /**
  * Adds characters to 'string' to align 'string' to a target length.
@@ -53,7 +53,7 @@ std::string align(std::string &string, Alignment alignment, size_t target_len, c
  *
  * @return aligned 'string'.
  */
-std::string align(std::string &string, Alignment alignment, size_t target_len,
+std::string align(std::string string, Alignment alignment, size_t target_len,
                   const std::string &fill);
 
 /**
