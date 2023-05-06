@@ -374,3 +374,32 @@ std::string strh::remove_alphabetical(std::string string)
     string = new_string;
     return string;
 }
+
+std::vector<std::string> strh::split_alphabetical(std::string_view string)
+{
+    std::vector<std::string> ret;
+    std::string temp;
+    for (char ch : string)
+    {
+        if (isdigit(ch))
+            temp += ch;
+        else if (!temp.empty())
+        {
+            ret.push_back(temp);
+            temp.clear();
+        }
+    }
+
+    if (!temp.empty())
+        ret.push_back(temp);
+
+    // If string view consists of all alphabetic characters, the resulting array should be {"",
+    // "", "", ...} to match the case of the split function.
+    if (ret.empty())
+    {
+        while (ret.size() < string.length())
+            ret.emplace_back("");
+    }
+
+    return ret;
+}

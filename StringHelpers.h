@@ -379,6 +379,15 @@ std::string remove_nums(std::string string);
 std::string remove_alphabetical(std::string string);
 
 /**
+ * Splits 'string' into substrings separated by any alphabetical (letter) characters.
+ *
+ * @param string the string to split.
+ *
+ * @return a vector of the substrings of 'string'.
+ */
+std::vector<std::string> split_alphabetical(std::string_view string);
+
+/**
  * Helper functions for the String Helper functions.
  *
  * @relatealso strh

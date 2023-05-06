@@ -823,6 +823,38 @@ TEST(remove_alphabetical, empty_string)
     ASSERT_EQ(string, "");
 }
 
+TEST(split_alphabetical, no_alphabetical)
+{
+    std::string string = "123";
+    std::vector<std::string> splits = strh::split_alphabetical(string);
+    std::vector<std::string> expected = {"123"};
+    ASSERT_EQ(splits, expected);
+}
+
+TEST(split_alphabetical, some_alphabetical)
+{
+    std::string string = "12.34";
+    std::vector<std::string> splits = strh::split_alphabetical(string);
+    std::vector<std::string> expected = {"12", "34"};
+    ASSERT_EQ(splits, expected);
+}
+
+TEST(split_alphabetical, all_alphabetical)
+{
+    std::string string = "abc";
+    std::vector<std::string> splits = strh::split_alphabetical(string);
+    std::vector<std::string> expected = {"", "", ""};
+    ASSERT_EQ(splits, expected);
+}
+
+TEST(split_alphabetical, empty_string)
+{
+    std::string string;
+    std::vector<std::string> splits = strh::split_alphabetical(string);
+    std::vector<std::string> expected = {};
+    ASSERT_EQ(splits, expected);
+}
+
 int main(int argc, char **argv)
 {
     testing::InitGoogleTest(&argc, argv);
