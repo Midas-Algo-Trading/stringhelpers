@@ -388,16 +388,28 @@ std::string remove_alphabetical(std::string string);
 std::vector<std::string> split_alphabetical(std::string_view string);
 
 /**
- * Converts 'parameters' in a parameter pack into a formatted string.
+ * Converts parameter pack 'parameters' into a formatted string.
  *
  * @tparam T the parameter type.
  *
  * @param params the parameters pack to convert into a formatted string.
  *
- * @return a formatted string of 'parameters'.
+ * @return a formatted string of 'parameters' delimitated by commas.
  */
 template<typename... T>
 std::string from_parameter_pack(T... params);
+
+/**
+ * Converts vector 'vector' into a formatted string.
+ *
+ * @tparam T the vector type.
+ *
+ * @param vector the vector to convert into a formatted string.
+ *
+ * @return a formatted string of 'vector' delimitated by commas.
+ */
+template<typename T>
+std::string from_vector(const std::vector<T>& vector);
 
 /**
  * Helper functions for the String Helper functions.

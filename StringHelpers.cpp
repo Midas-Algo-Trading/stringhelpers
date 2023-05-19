@@ -420,3 +420,16 @@ std::string strh::from_parameter_pack(T... params)
         (add_parameters_to_ss(params, idx++), ...);
         return ss.str();
 }
+
+template<typename T>
+std::string strh::from_vector(const std::vector<T> &vector)
+{
+        std::stringstream ss;
+        for (size_t i = 0; i < vector.size(); i++)
+        {
+                ss << vector[i];
+                if (i != vector.size()-1)
+                        ss << ", ";
+        }
+        return ss.str();
+}
