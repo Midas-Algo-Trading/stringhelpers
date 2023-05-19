@@ -1,6 +1,5 @@
 #include "gtest/gtest.h"
 #include "../StringHelpers.h"
-#include "../StringHelpers.cpp"
 
 TEST(capitalize, basic)
 {
@@ -867,23 +866,6 @@ TEST(from_vector, basic)
         std::vector test_vector = {1, 2, 3};
         std::string test_as_str = strh::from_vector(test_vector);
         ASSERT_EQ(test_as_str, "1, 2, 3");
-}
-
-template<typename... T>
-std::string from_parameter_pack(T... params)
-{
-        std::stringstream ss;
-
-        size_t idx = 1;
-        auto add_parameters_to_ss = [&](const auto& parameter, size_t idx)
-        {
-                ss << parameter;
-                if (idx < sizeof...(params))
-                        ss << ", ";
-        };
-
-        (add_parameters_to_ss(params, idx++), ...);
-        return ss.str();
 }
 
 int main(int argc, char **argv)

@@ -454,4 +454,5 @@ std::string align_right(std::string string, size_t target_len, std::string fill)
 }
 }
 
+#include "StringHelpers.cpp"
 #endif //STRINGHELPERS_STRINGHELPERS_H
