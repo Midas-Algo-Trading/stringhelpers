@@ -403,3 +403,20 @@ std::vector<std::string> strh::split_alphabetical(std::string_view string)
 
     return ret;
 }
+
+template<typename... T>
+std::string strh::from_parameter_pack(T... params)
+{
+        std::stringstream ss;
+
+        size_t idx = 1;
+        auto add_parameters_to_ss = [&](const auto& parameter, size_t idx)
+        {
+                ss << parameter;
+                if (idx < sizeof...(params))
+                        ss << ", ";
+        };
+
+        (add_parameters_to_ss(params, idx++), ...);
+        return ss.str();
+}
