@@ -12,11 +12,11 @@ if (NOT googletest_POPULATED)
     add_subdirectory(${googletest_SOURCE_DIR} ${googletest_BUILD_DIR})
 endif()
 
-add_library(DatetimeLib ../StringHelpers.h)
+add_library(StringHelperLib ../StringHelpers.h)
 
-set_target_properties(DatetimeLib PROPERTIES LINKER_LANGUAGE CXX)
+set_target_properties(StringHelperLib PROPERTIES LINKER_LANGUAGE CXX)
 
 # Now simply link against gtest or gtest_main as needed. Eg
 add_executable(test test.cpp)
 
-target_link_libraries(test DatetimeLib gtest_main)
+target_link_libraries(test StringHelperLib gtest_main)
