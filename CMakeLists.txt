@@ -1,10 +1,12 @@
-# CMakeLists.txt in the StringHelpers directory
+cmake_minimum_required(VERSION 3.24)
+project(StringHelpers)
 
-# Create the library target
-add_library(StringHelpersLib STATIC StringHelpers.h)
+set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-set_target_properties(StringHelpersLib PROPERTIES LINKER_LANGUAGE CXX)
+add_library(StringHelpers include/StringHelpers/StringHelpers.h)
+set_target_properties(StringHelpers PROPERTIES LINKER_LANGUAGE CXX)
 
-# Set the include directory for the library
-target_include_directories(StringHelpersLib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+include_directories(include)
+
 add_subdirectory(test)

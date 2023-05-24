@@ -12,9 +12,7 @@ if (NOT googletest_POPULATED)
     add_subdirectory(${googletest_SOURCE_DIR} ${googletest_BUILD_DIR})
 endif()
 
-set_target_properties(StringHelpersLib PROPERTIES LINKER_LANGUAGE CXX)
-
 # Now simply link against gtest or gtest_main as needed. Eg
 add_executable(test test.cpp)
 
-target_link_libraries(test StringHelpersLib gtest_main)
+target_link_libraries(test StringHelpers gtest_main)
