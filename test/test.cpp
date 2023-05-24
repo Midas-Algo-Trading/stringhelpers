@@ -1,5 +1,5 @@
 #include "gtest/gtest.h"
-#include "../StringHelpers.h"
+#include "StringHelpers/StringHelpers.h"
 
 TEST(capitalize, basic)
 {
@@ -97,28 +97,28 @@ TEST(multiply, empty_string)
 TEST(count, character)
 {
     std::string string = "test";
-    int t_count = strh::count(string, 't');
+    size_t t_count = strh::count(string, 't');
     ASSERT_EQ(t_count, 2);
 }
 
 TEST(count, string)
 {
     std::string string = "test";
-    int st_count = strh::count(string, "st");
+    size_t st_count = strh::count(string, "st");
     ASSERT_EQ(st_count, 1);
 }
 
 TEST(count, not_in)
 {
     std::string string = "test";
-    int x_count = strh::count(string, 'x');
+    size_t x_count = strh::count(string, 'x');
     ASSERT_EQ(x_count, 0);
 }
 
 TEST(count, all)
 {
     std::string string = "www";
-    int w_count = strh::count(string, 'w');
+    size_t w_count = strh::count(string, 'w');
     ASSERT_EQ(w_count, 3);
 }
 

@@ -7,6 +7,7 @@
 
 #include <string>
 #include <vector>
+#include <sstream>
 
 namespace strh
 {
@@ -27,7 +28,7 @@ enum Alignment { LEFT, CENTER, RIGHT };
  *
  * @return capitalized 'string'.
  */
-std::string capitalize(std::string string)
+inline std::string capitalize(std::string string)
 {
         string[0] = static_cast<char>(toupper(string[0]));
         return string;
@@ -41,7 +42,7 @@ std::string capitalize(std::string string)
  *
  * @return multiplied 'string'
  */
-std::string multiply(std::string string, size_t amount)
+inline std::string multiply(std::string string, size_t amount)
 {
         std::string multiplied_string;
         while (amount > 0)
@@ -70,7 +71,7 @@ namespace priv_helpers
  *
  * @return 'string' aligned to the left.
  */
-std::string align_left(std::string string, size_t target_len, std::string fill)
+inline std::string align_left(std::string string, size_t target_len, std::string fill)
 {
         size_t fill_amount = target_len - string.length();
         fill = strh::multiply(fill, fill_amount / fill.size());
@@ -87,7 +88,7 @@ std::string align_left(std::string string, size_t target_len, std::string fill)
  *
  * @return 'string' aligned to the right.
  */
-std::string align_center(std::string string, size_t target_len, std::string fill)
+inline std::string align_center(std::string string, size_t target_len, std::string fill)
 {
         size_t fill_amount = target_len - string.length();
         fill = strh::multiply(fill, (fill_amount / fill.size()) / 2);
@@ -104,7 +105,7 @@ std::string align_center(std::string string, size_t target_len, std::string fill
  *
  * @return 'string' aligned to the center.
  */
-std::string align_right(std::string string, size_t target_len, std::string fill)
+inline std::string align_right(std::string string, size_t target_len, std::string fill)
 {
         size_t fill_amount = target_len - string.length();
         fill = strh::multiply(fill, fill_amount / fill.size());
@@ -123,7 +124,7 @@ std::string align_right(std::string string, size_t target_len, std::string fill)
  *
  * @return aligned 'string'.
  */
-std::string align(std::string string, Alignment alignment, size_t target_len,
+inline std::string align(std::string string, Alignment alignment, size_t target_len,
                   const std::string &fill)
 {
         if (fill.empty())
@@ -153,7 +154,7 @@ std::string align(std::string string, Alignment alignment, size_t target_len,
  *
  * @throws std::invalid_argument Thrown if 'fill' is empty.
  */
-std::string align(std::string string, Alignment alignment, size_t target_len, char fill)
+inline std::string align(std::string string, Alignment alignment, size_t target_len, char fill)
 {
         return align(std::move(string), alignment, target_len, std::string(1, fill));
 }
@@ -167,7 +168,7 @@ std::string align(std::string string, Alignment alignment, size_t target_len, ch
  *
  * @return the number of times 'key' is in 'string'.
  */
-size_t count(std::string_view string, char key)
+inline size_t count(std::string_view string, char key)
 {
         int ret = 0;
         for (char ch: string)
@@ -188,7 +189,7 @@ size_t count(std::string_view string, char key)
  *
  * @throws std::invalid_argument Thrown if 'key' is empty.
  */
-size_t count(std::string_view string, std::string_view key)
+inline size_t count(std::string_view string, std::string_view key)
 {
         if (key.empty())
                 throw std::invalid_argument("key cannot be empty");
@@ -213,7 +214,7 @@ size_t count(std::string_view string, std::string_view key)
  *
  * @throw std::invalid_argument Thrown if 'string' is empty.
  */
-bool ends_with(std::string_view string, char key)
+inline bool ends_with(std::string_view string, char key)
 {
         if (string.empty())
                 return false;
@@ -229,7 +230,7 @@ bool ends_with(std::string_view string, char key)
  *
  * @return 'true' if 'string' ends with 'key', 'false' otherwise.
  */
-bool ends_with(std::string_view string, std::string_view key)
+inline bool ends_with(std::string_view string, std::string_view key)
 {
         size_t start_idx = string.length() - key.length();
         return string.substr(start_idx, key.length()) == key;
@@ -243,7 +244,7 @@ bool ends_with(std::string_view string, std::string_view key)
  *
  * @return 'true' if 'key' is in 'string', 'false' otherwise.
  */
-bool is_in(std::string_view string, char key)
+inline bool is_in(std::string_view string, char key)
 {
         return count(string, key) != 0;
 }
@@ -256,7 +257,7 @@ bool is_in(std::string_view string, char key)
  *
  * @return 'true' if 'key' is in 'string', 'false' otherwise.
  */
-bool is_in(std::string_view string, std::string_view key)
+inline bool is_in(std::string_view string, std::string_view key)
 {
         return count(string, key) != 0;
 }
@@ -271,7 +272,7 @@ bool is_in(std::string_view string, std::string_view key)
  *
  * @throw std::invalid_argument Thrown if 'string' is empty.
  */
-bool all_nums(std::string_view string)
+inline bool all_nums(std::string_view string)
 {
         if (string.empty())
                 throw std::invalid_argument("string cannot be empty");
@@ -298,7 +299,7 @@ bool all_nums(std::string_view string)
  *
  * @throw std::invalid_argument Thrown if 'string' is empty.
  */
-bool all_alphabetical(std::string_view string)
+inline bool all_alphabetical(std::string_view string)
 {
         if (string.empty())
         {
@@ -327,7 +328,7 @@ bool all_alphabetical(std::string_view string)
  *
  * @throw std::invalid_argument Thrown if 'string' is empty.
  */
-bool all_lowercase(std::string_view string)
+inline bool all_lowercase(std::string_view string)
 {
         if (string.empty())
                 throw std::invalid_argument("string cannot be empty");
@@ -354,7 +355,7 @@ bool all_lowercase(std::string_view string)
  *
  * @throw std::invalid_argument Thrown if 'string' is empty.
  */
-bool all_uppercase(std::string_view string)
+inline bool all_uppercase(std::string_view string)
 {
         if (string.empty())
                 throw std::invalid_argument("string cannot be empty");
@@ -382,7 +383,7 @@ bool all_uppercase(std::string_view string)
  *
  * @throw std::invalid_argument Thrown if 'string' is empty.
  */
-bool all_spaces(std::string_view string)
+inline bool all_spaces(std::string_view string)
 {
         if (string.empty())
                 throw std::invalid_argument("string cannot be empty");
@@ -407,7 +408,7 @@ bool all_spaces(std::string_view string)
  *
  * @return a vector of the substrings of 'string'.
  */
-std::vector<std::string> split(std::string_view string, char delimiter)
+inline std::vector<std::string> split(std::string_view string, char delimiter)
 {
         std::vector<std::string> ret;
         std::stringstream ss = std::stringstream(std::string(string));
@@ -425,7 +426,7 @@ std::vector<std::string> split(std::string_view string, char delimiter)
  *
  * @return a vector of the substrings of 'string'.
  */
-std::vector<std::string> split(std::string_view string, std::string_view delimiter)
+inline std::vector<std::string> split(std::string_view string, std::string_view delimiter)
 {
         if (delimiter.empty())
                 throw std::invalid_argument("delimiter cannot be empty");
@@ -452,7 +453,7 @@ std::vector<std::string> split(std::string_view string, std::string_view delimit
  *
  * @return a vector of the substrings of 'string'.
  */
-std::vector<std::string> split_lines(std::string_view string)
+inline std::vector<std::string> split_lines(std::string_view string)
 {
         return split(string, '\n');
 }
@@ -468,7 +469,7 @@ std::vector<std::string> split_lines(std::string_view string)
  * @note whitespaces will be removed at the beginning and end until a non-whitespace character is
  * met.
  */
-std::string strip(std::string string)
+inline std::string strip(std::string string)
 {
         size_t front_whitespaces_end_idx = string.find_first_not_of(" \t\n");
         if (front_whitespaces_end_idx == std::string::npos)
@@ -491,7 +492,7 @@ std::string strip(std::string string)
  *
  * @return 'string' with swapped characters.
  */
-std::string swap_cases(std::string string)
+inline std::string swap_cases(std::string string)
 {
         for (char &ch: string)
         {
@@ -514,7 +515,7 @@ std::string swap_cases(std::string string)
  *
  * @throw std::invalid_argument Thrown if 'key' is empty.
  */
-int find_first(std::string_view string, std::string_view key)
+inline int find_first(std::string_view string, std::string_view key)
 {
         if (key.empty())
                 throw std::invalid_argument("key cannot be empty");
@@ -532,7 +533,7 @@ int find_first(std::string_view string, std::string_view key)
  * @return the index of the first occurrence of 'key' in 'string'. If 'key' is not in 'string',
  * will return '-1'.
  */
-int find_first(std::string_view string, char key)
+inline int find_first(std::string_view string, char key)
 {
         return strh::find_first(string, std::string(1, key));
 }
@@ -548,7 +549,7 @@ int find_first(std::string_view string, char key)
  *
  * @throw std::invalid_argument Thrown if 'key' is empty.
  */
-int find_last(std::string_view string, std::string_view key)
+inline int find_last(std::string_view string, std::string_view key)
 {
         if (key.empty())
                 throw std::invalid_argument("key cannot be empty");
@@ -566,7 +567,7 @@ int find_last(std::string_view string, std::string_view key)
  * @return the index of the last occurrence of 'key' in 'string'. If 'key' is not in 'string',
  * will return -1.
  */
-int find_last(std::string_view string, char key)
+inline int find_last(std::string_view string, char key)
 {
         return find_last(string, std::string(1, key));
 }
@@ -580,7 +581,7 @@ int find_last(std::string_view string, char key)
  * @return a vector of the indexes 'key' occurred in 'string'. If 'key' is not in 'string', will
  * return an empty vector.
  */
-std::vector<size_t> find(std::string_view string, std::string_view key)
+inline std::vector<size_t> find(std::string_view string, std::string_view key)
 {
         if (key.empty())
                 throw std::invalid_argument("key cannot be empty");
@@ -607,7 +608,7 @@ std::vector<size_t> find(std::string_view string, std::string_view key)
  *
  * @throw std::invalid_argument Thrown if 'key' is empty.
  */
-std::vector<size_t> find(std::string_view string, char key)
+inline std::vector<size_t> find(std::string_view string, char key)
 {
         return strh::find(string, std::string(1, key));
 }
@@ -621,7 +622,7 @@ std::vector<size_t> find(std::string_view string, char key)
  *
  * @return 'string' with all occurrences of 'from' replaced with 'to'.
  */
-std::string replace(std::string string, std::string_view from, std::string_view to)
+inline std::string replace(std::string string, std::string_view from, std::string_view to)
 {
         if (from.empty())
         {
@@ -649,7 +650,7 @@ std::string replace(std::string string, std::string_view from, std::string_view 
  *
  * @return 'string' with all occurrences of 'from' replaced with 'to'.
  */
-std::string replace(std::string string, char from, std::string_view to)
+inline std::string replace(std::string string, char from, std::string_view to)
 {
         return strh::replace(std::move(string), std::string(1, from), to);
 }
@@ -663,7 +664,7 @@ std::string replace(std::string string, char from, std::string_view to)
  *
  * @return 'string' with all occurrences of 'from' replaced with 'to'.
  */
-std::string replace(std::string string, std::string_view from, char to)
+inline std::string replace(std::string string, std::string_view from, char to)
 {
         return strh::replace(std::move(string), from, std::string(1, to));
 }
@@ -677,7 +678,7 @@ std::string replace(std::string string, std::string_view from, char to)
  *
  * @return 'string' with all occurrences of 'from' replaced with 'to'.
  */
-std::string replace(std::string string, char from, char to)
+inline std::string replace(std::string string, char from, char to)
 {
         return strh::replace(std::move(string), std::string(1, from), std::string(1, to));
 }
@@ -689,7 +690,7 @@ std::string replace(std::string string, char from, char to)
  *
  * @return 'string' with all numbers removed.
  */
-std::string remove_nums(std::string string)
+inline std::string remove_nums(std::string string)
 {
         std::string new_string;
         for (char ch: string)
@@ -708,7 +709,7 @@ std::string remove_nums(std::string string)
  *
  * @return 'string' with all alphabetical (letters) removed.
  */
-std::string remove_alphabetical(std::string string)
+inline std::string remove_alphabetical(std::string string)
 {
         std::string new_string;
         for (char ch: string)
@@ -727,7 +728,7 @@ std::string remove_alphabetical(std::string string)
  *
  * @return a vector of the substrings of 'string'.
  */
-std::vector<std::string> split_alphabetical(std::string_view string)
+inline std::vector<std::string> split_alphabetical(std::string_view string)
 {
         std::vector<std::string> ret;
         std::string temp;
@@ -766,7 +767,7 @@ std::vector<std::string> split_alphabetical(std::string_view string)
  * @return a formatted string of 'parameters' delimitated by commas.
  */
 template<typename... T>
-std::string from_parameter_pack(T... params)
+inline std::string from_parameter_pack(T... params)
 {
         std::stringstream ss;
 
@@ -792,7 +793,7 @@ std::string from_parameter_pack(T... params)
  * @return a formatted string of 'vector' delimitated by commas.
  */
 template<typename T>
-std::string from_vector(const std::vector<T>& vector)
+inline std::string from_vector(const std::vector<T>& vector)
 {
         std::stringstream ss;
         for (size_t i = 0; i < vector.size(); i++)
