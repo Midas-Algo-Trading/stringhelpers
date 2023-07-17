@@ -1,12 +1,13 @@
 cmake_minimum_required(VERSION 3.24)
-project(StringHelpers)
+project(stringhelpers)
 
-set(CMAKE_CXX_STANDARD 23)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
+add_library(${PROJECT_NAME} include/stringhelpers/StringHelpers.h)
+set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 
-add_library(StringHelpers include/StringHelpers/StringHelpers.h)
-set_target_properties(StringHelpers PROPERTIES LINKER_LANGUAGE CXX)
+target_include_directories(${PROJECT_NAME} PUBLIC include)
 
-include_directories(include)
+option(BUILD_TESTS "Build the test directory" OFF)
 
-add_subdirectory(test)
+if(BUILD_TESTS)
+    add_subdirectory(test)
+endif()
