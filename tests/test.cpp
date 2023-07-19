@@ -1,5 +1,5 @@
 #include "gtest/gtest.h"
-#include "StringHelpers/StringHelpers.h"
+#include "stringhelpers/stringhelpers.h"
 
 TEST(capitalize, basic)
 {
