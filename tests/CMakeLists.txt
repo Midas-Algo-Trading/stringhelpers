@@ -15,4 +15,4 @@ endif()
 # Now simply link against gtest or gtest_main as needed. Eg
 add_executable(test test.cpp)
 
-target_link_libraries(test gtest_main)
+target_link_libraries(test gtest_main stringhelpers)
