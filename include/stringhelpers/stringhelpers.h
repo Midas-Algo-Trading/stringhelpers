@@ -217,7 +217,7 @@ inline size_t count(std::string_view string, std::string_view key)
 inline bool ends_with(std::string_view string, char key)
 {
         if (string.empty())
-                return false;
+                throw std::invalid_argument("string cannot be empty");
 
         return string[string.length() - 1] == key;
 }
@@ -234,6 +234,40 @@ inline bool ends_with(std::string_view string, std::string_view key)
 {
         size_t start_idx = string.length() - key.length();
         return string.substr(start_idx, key.length()) == key;
+}
+
+/**
+ * Checks if 'string' starts with 'key'.
+ *
+ * @param string the string to check.
+ * @param key the character to search for at the start of the string.
+ *
+ * @return 'true' if 'string' starts with 'key', 'false' otherwise.
+ *
+ * @throw std::invalid_argument Thrown if 'string' is empty.
+ */
+inline bool starts_with(std::string_view string, char key)
+{
+    if (string.empty())
+        throw std::invalid_argument("string cannot be empty");
+
+    return string[0] == key;
+}
+
+/**
+ * Checks if 'string' starts with 'key'.
+ *
+ * @param string the string to check.
+ * @param key the string to search for at the start of the string.
+ *
+ * @return 'true' if 'string' starts with 'key', 'false' otherwise.
+ */
+inline bool starts_with(std::string_view string, std::string_view prefix)
+{
+    if (string.length() < prefix.length())
+        return false;
+
+    return string.substr(0, prefix.length()) == prefix;
 }
 
 /**
