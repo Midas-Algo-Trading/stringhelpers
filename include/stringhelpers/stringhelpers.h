@@ -823,18 +823,19 @@ inline std::string from_parameter_pack(T... params)
  * @tparam T the vector type.
  *
  * @param vector the vector to convert into a formatted string.
+ * @param delimiter the string separating each value of 'vector'. (default ", ")
  *
  * @return a formatted string of 'vector' delimitated by commas.
  */
 template<typename T>
-inline std::string from_vector(const std::vector<T>& vector)
+inline std::string from_vector(const std::vector<T>& vector, std::string_view delimiter = ", ")
 {
         std::stringstream ss;
         for (size_t i = 0; i < vector.size(); i++)
         {
                 ss << vector[i];
                 if (i != vector.size()-1)
-                        ss << ", ";
+                        ss << delimiter;
         }
         return ss.str();
 }
