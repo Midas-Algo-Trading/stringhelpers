@@ -839,6 +839,14 @@ inline std::string from_vector(const std::vector<T>& vector, std::string_view de
         }
         return ss.str();
 }
+
+inline std::string format(int number)
+{
+    std::stringstream ss;
+    ss.imbue(std::locale(""));
+    ss << std::fixed << number;
+    return ss.str();
+}
 }
 
 #endif //STRINGHELPERS_STRINGHELPERS_H

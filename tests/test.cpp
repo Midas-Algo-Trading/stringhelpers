@@ -166,8 +166,7 @@ TEST(ends_with, all)
 TEST(ends_with, empty_string)
 {
     std::string string;
-    bool ends_with_x = strh::ends_with(string, 'x');
-    ASSERT_FALSE(ends_with_x);
+    ASSERT_THROW(strh::ends_with(string, 'x'), std::invalid_argument);
 }
 
 TEST(ends_with, empty_key)
@@ -866,6 +865,24 @@ TEST(from_vector, basic)
         std::vector test_vector = {1, 2, 3};
         std::string test_as_str = strh::from_vector(test_vector);
         ASSERT_EQ(test_as_str, "1, 2, 3");
+}
+
+TEST(format, no_comma)
+{
+    std::string formatted = strh::format(100);
+    ASSERT_EQ(formatted, "100");
+}
+
+TEST(format, one_comma)
+{
+    std::string formatted = strh::format(1'000);
+    ASSERT_EQ(formatted, "1,000");
+}
+
+TEST(format, multiple_comma)
+{
+    std::string formatted = strh::format(10'000'000);
+    ASSERT_EQ(formatted, "10,000,000");
 }
 
 int main(int argc, char **argv)
