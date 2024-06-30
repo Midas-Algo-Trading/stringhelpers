@@ -1,14 +1,17 @@
-cmake_minimum_required(VERSION 3.24)
-project(stringhelpers)
+cmake_minimum_required(VERSION 3.28)
+project(stringhelpers CXX)
 
 set(CMAKE_CXX_STANDARD 23)
 
-add_library(${PROJECT_NAME} include/stringhelpers/stringhelpers.h include/stringhelpers/cpp_file.cpp)
-set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
-target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
+add_library(stringhelpers INTERFACE include)
 
-option(STRINGHELPERS_BUILD_TESTS "Build the test directory for stringhelpers" OFF)
+target_include_directories(stringhelpers INTERFACE include)
 
-if(STRINGHELPERS_BUILD_TESTS)
+set_target_properties(stringhelpers PROPERTIES LINKER_LANGUAGE CXX)
+
+include_directories(include)
+
+option(STRINGHELPERS_BUILD_TESTS "Build tests" OFF)
+if (STRINGHELPERS_BUILD_TESTS)
     add_subdirectory(tests)
 endif()
